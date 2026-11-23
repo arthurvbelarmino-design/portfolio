@@ -10,129 +10,139 @@
         :root {
             --bg: #0f172a;
             --bg-card: #1e293b;
-            --texto: #e2e8f0;
+            --bg-alt: #0b1120;
+            --texto: #f8fafc;
             --texto-mutado: #94a3b8;
             --destaque: #3b82f6;
-            --destaque-hover: #60a5fa;
-            --borda: #334155;
+            --borda: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--texto); line-height: 1.6; }
+        body { background: var(--bg); color: var(--texto); line-height: 1.7; -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: var(--destaque); transition: 0.3s; }
-        a:hover { color: var(--destaque-hover); }
+        a:hover { color: #60a5fa; }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
         
+        /* ANIMAÇÃO DE ENTRADA */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
+        .fade-in.visivel { opacity: 1; transform: translateY(0); }
+
         /* HERO SECTION */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
-        .hero h1 { font-size: 3.5em; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 10px; }
-        .hero h2 { font-size: 1.5em; color: var(--texto-mutado); font-weight: 400; margin-bottom: 30px; }
+        .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 60px; }
+        
+        .hero-foto {
+            width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--destaque); padding: 4px; margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .hero h1 { font-size: 3.5em; font-weight: 900; letter-spacing: -2px; line-height: 1.1; margin-bottom: 10px; }
+        .hero h2 { font-size: 1.2em; color: var(--texto-mutado); font-weight: 400; margin-bottom: 25px; letter-spacing: 1px; text-transform: uppercase; }
         .hero p { max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1em; color: var(--texto-mutado); }
-        .btn { background: var(--destaque); color: #fff; padding: 12px 30px; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; }
-        .btn:hover { background: var(--destaque-hover); color: #fff; transform: translateY(-2px); }
-        .scroll-down { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 1.5em; color: var(--texto-mutado); animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
+        
+        .btn { background: var(--destaque); color: #fff; padding: 14px 32px; border-radius: 30px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; font-size: 1em; }
+        .btn:hover { background: #2563eb; color: #fff; transform: scale(1.05); }
 
         /* SEÇÕES GERAIS */
-        section { padding: 80px 0; border-bottom: 1px solid var(--borda); }
-        .titulo-secao { font-size: 2em; font-weight: 800; margin-bottom: 10px; }
-        .subtitulo { color: var(--texto-mutado); margin-bottom: 40px; font-size: 1.1em; }
+        section { padding: 100px 0; }
+        section:nth-of-type(even) { background: var(--bg-alt); }
+        
+        .header-secao { margin-bottom: 50px; }
+        .titulo-secao { font-size: 2.2em; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
+        .subtitulo { color: var(--texto-mutado); font-size: 1.1em; }
 
-        /* QUEM É O ARTHUR */
-        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .sobre-texto p { margin-bottom: 20px; font-size: 1.1em; color: var(--texto-mutado); }
-        .sobre-texto strong { color: var(--texto); }
-        .sobre-img img { width: 100%; border-radius: 20px; border: 2px solid var(--borda); }
+        /* SOBRE MIM */
+        .sobre-texto p { margin-bottom: 20px; font-size: 1.1em; color: var(--texto-mutado); max-width: 750px; }
+        .sobre-texto strong { color: var(--texto); font-weight: 600; }
 
-        /* STACK DE TECNOLOGIAS */
-        .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .stack-card { background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid var(--borda); }
-        .stack-card h3 { font-size: 1.2em; margin-bottom: 15px; color: var(--destaque); border-bottom: 1px solid var(--borda); padding-bottom: 10px; }
+        /* STACK */
+        .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+        .stack-card { background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--borda); }
+        .stack-card h3 { font-size: 1.1em; margin-bottom: 20px; color: var(--destaque); display: flex; align-items: center; gap: 10px; }
         .stack-card ul { list-style: none; }
-        .stack-card li { margin-bottom: 8px; color: var(--texto-mutado); display: flex; align-items: center; gap: 10px; }
-        .stack-card li::before { content: "▹"; color: var(--destaque); font-weight: bold; }
+        .stack-card li { margin-bottom: 12px; color: var(--texto-mutado); font-size: 0.95em; display: flex; align-items: center; gap: 8px; }
+        .stack-card li::before { content: ""; display: inline-block; width: 6px; height: 6px; background: var(--texto-mutado); border-radius: 50%; }
 
         /* PROJETOS */
-        .projetos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .projeto-card { background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--borda); transition: 0.3s; }
-        .projeto-card:hover { transform: translateY(-5px); border-color: var(--destaque); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .projeto-tag { font-size: 0.8em; font-weight: 700; color: var(--destaque); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
-        .projeto-card h3 { font-size: 1.5em; margin-bottom: 15px; }
-        .projeto-card p { color: var(--texto-mutado); margin-bottom: 20px; font-size: 0.95em; }
-        .projeto-techs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .projeto-techs span { background: rgba(59, 130, 246, 0.1); color: var(--destaque); padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 600; }
-        .btn-projeto { font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9em; }
+        .projetos-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        .projeto-card { background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--borda); display: flex; flex-direction: column; transition: 0.3s; }
+        .projeto-card:hover { border-color: rgba(59, 130, 246, 0.5); transform: translateY(-5px); }
+        .projeto-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+        .projeto-card h3 { font-size: 1.6em; margin-bottom: 10px; }
+        .projeto-tag { font-size: 0.75em; font-weight: 700; color: #fff; background: var(--destaque); padding: 6px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .projeto-card p { color: var(--texto-mutado); margin-bottom: 30px; font-size: 1em; }
+        .projeto-techs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .projeto-techs span { background: rgba(255, 255, 255, 0.05); color: var(--texto); padding: 6px 14px; border-radius: 20px; font-size: 0.85em; font-weight: 500; }
+        .btn-projeto { font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95em; margin-top: auto; }
 
-        /* EXPERIÊNCIA E FORMAÇÃO */
-        .timeline { border-left: 2px solid var(--borda); padding-left: 30px; margin-top: 20px; }
-        .timeline-item { position: relative; margin-bottom: 40px; }
-        .timeline-item::before { content: ''; position: absolute; left: -37px; top: 5px; width: 12px; height: 12px; background: var(--destaque); border-radius: 50%; border: 3px solid var(--bg); }
-        .timeline-item h3 { font-size: 1.3em; }
-        .timeline-item h4 { font-size: 1em; color: var(--texto-mutado); font-weight: 400; margin-bottom: 10px; }
-        .timeline-item .data { display: inline-block; background: var(--bg-card); padding: 4px 12px; border-radius: 20px; font-size: 0.8em; margin-bottom: 15px; border: 1px solid var(--borda); }
-        .timeline-item ul { list-style: none; color: var(--texto-mutado); }
-        .timeline-item ul li { margin-bottom: 8px; padding-left: 15px; position: relative; }
-        .timeline-item ul li::before { content: "•"; position: absolute; left: 0; color: var(--destaque); }
+        /* EXPERIÊNCIA */
+        .timeline { margin-top: 30px; }
+        .timeline-item { margin-bottom: 40px; padding-left: 30px; border-left: 2px solid var(--borda); position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; background: var(--destaque); border-radius: 50%; box-shadow: 0 0 10px var(--destaque); }
+        .timeline-item h3 { font-size: 1.3em; margin-bottom: 5px; }
+        .timeline-item h4 { font-size: 1em; color: var(--destaque); font-weight: 500; margin-bottom: 15px; }
+        .timeline-item .data { display: inline-block; font-size: 0.85em; color: var(--texto-mutado); margin-bottom: 15px; font-weight: 600; }
+        .timeline-item p { color: var(--texto-mutado); font-size: 0.95em; margin-bottom: 10px; }
 
-        /* RODAPÉ / CONTATO */
-        footer { padding: 80px 0; text-align: center; }
-        footer h2 { font-size: 2.5em; font-weight: 800; margin-bottom: 20px; }
-        footer p { color: var(--texto-mutado); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
-        .footer-links a { display: flex; align-items: center; gap: 8px; background: var(--bg-card); padding: 12px 24px; border-radius: 8px; border: 1px solid var(--borda); color: var(--texto); font-weight: 600; }
-        .footer-links a:hover { background: var(--destaque); border-color: var(--destaque); color: #fff; }
-        .copyright { font-size: 0.9em; color: var(--texto-mutado); border-top: 1px solid var(--borda); padding-top: 30px; }
+        /* RODAPÉ */
+        footer { padding: 100px 0 40px 0; text-align: center; border-top: 1px solid var(--borda); background: var(--bg); }
+        footer h2 { font-size: 2.5em; font-weight: 800; margin-bottom: 20px; letter-spacing: -1px; }
+        footer p { color: var(--texto-mutado); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 60px; }
+        .footer-links a { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: var(--bg-card); color: var(--texto); font-size: 1.2em; border: 1px solid var(--borda); transition: 0.3s; }
+        .footer-links a:hover { background: var(--destaque); color: #fff; transform: translateY(-5px); }
+        .copyright { font-size: 0.9em; color: var(--texto-mutado); }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5em; }
-            .sobre-grid, .projetos-grid { grid-template-columns: 1fr; }
-            .sobre-img { display: none; } /* Esconde a foto no mobile para não empurrar o texto */
+            .hero h1 { font-size: 2.8em; }
+            .hero-foto { width: 140px; height: 140px; }
+            .projeto-header { flex-direction: column; gap: 15px; }
+            .projeto-card { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
     <!-- HERO SECTION -->
-    <section class="hero">
+    <section class="hero fade-in">
         <div class="container">
+            <!-- Aqui vai a sua foto -->
+            <img src="perfil.jpg" alt="Arthur Belarmino" class="hero-foto">
             <h1>Arthur Belarmino</h1>
             <h2>Desenvolvedor Backend & Fundador da TechOS</h2>
-            <p>Estudante de Engenharia de Software focado em criar soluções digitais que resolvem problemas reais. Da vivência no comércio local à construção de sistemas ERP na nuvem.</p>
-            <a href="#quem-sou" class="btn">Role para explorar <i class="fa-solid fa-arrow-down"></i></a>
+            <p>Construindo soluções digitais que resolvem problemas reais. Da vivência no comércio local à engenharia de softwares na nuvem.</p>
+            <a href="#sobre" class="btn">Saiba mais <i class="fa-solid fa-arrow-down"></i></a>
         </div>
-        <a href="#quem-sou" class="scroll-down"><i class="fa-solid fa-chevron-down"></i></a>
     </section>
 
-    <!-- QUEM É O ARTHUR -->
-    <section id="quem-sou">
+    <!-- SOBRE MIM -->
+    <section id="sobre" class="fade-in">
         <div class="container">
-            <h2 class="titulo-secao">Quem é o Arthur</h2>
-            <p class="subtitulo">Minha história, minha visão de mundo e o que me move.</p>
+            <div class="header-secao">
+                <h2 class="titulo-secao">Quem é o Arthur</h2>
+                <p class="subtitulo">Minha história, minha visão de mundo e o que me move.</p>
+            </div>
             
-            <div class="sobre-grid">
-                <div class="sobre-texto">
-                    <p>Minha relação com a tecnologia começou de forma inesperada: <strong>debaixo do balcão da assistência técnica do meu pai</strong>. Passei anos atendendo clientes e vendo a rotina de um pequeno comércio, o que me deu uma visão muito prática das dificuldades de quem empreende no Brasil.</p>
-                    <p>Foi ao perceber a dificuldade do meu pai em gerenciar tudo em papéis que decidi aprender a programar. Hoje, curso Engenharia de Software e transformei essa vontade em ação criando a <strong>TechOS</strong>, minha empresa focada em desenvolver sistemas e sites acessíveis para pequenos negócios.</p>
-                    <p>Atualmente, atuo na área de logística do Mercado Livre, onde lido com processos, resolução de problemas e análise de dados. Sou <strong>autodidata</strong>, proativo e acredito que a melhor tecnologia é aquela que resolve a vida real de alguém.</p>
-                </div>
-                <div class="sobre-img">
-                    <!-- Coloque a sua foto aqui -->
-                    <img src="perfil.jpg" alt="Arthur Belarmino">
-                </div>
+            <div class="sobre-texto">
+                <p>Minha relação com a tecnologia começou de forma inesperada: <strong>debaixo do balcão da assistência técnica do meu pai</strong>. Passei anos atendendo clientes e vendo a rotina de um pequeno comércio, o que me deu uma visão muito prática das dificuldades de quem empreende no Brasil.</p>
+                <p>Foi ao perceber a dificuldade dele em gerenciar tudo em papéis que decidi aprender a programar. Hoje, curso Engenharia de Software e transformei essa vontade em ação criando a <strong>TechOS</strong>, minha empresa focada em desenvolver sistemas e sites acessíveis para pequenos negócios.</p>
+                <p>Atualmente, atuo na área de logística do Mercado Livre, onde lido com processos e resolução de problemas. Sou <strong>autodidata</strong>, proativo e acredito que a melhor tecnologia é aquela que resolve a vida real de alguém.</p>
             </div>
         </div>
     </section>
 
-    <!-- STACK DE TECNOLOGIAS -->
-    <section id="stack" style="background: #0b1120;">
+    <!-- STACK -->
+    <section id="stack" class="fade-in">
         <div class="container">
-            <h2 class="titulo-secao">Stack de Tecnologias</h2>
-            <p class="subtitulo">Ferramentas e linguagens que utilizo para construir meus sistemas.</p>
+            <div class="header-secao">
+                <h2 class="titulo-secao">Stack de Tecnologias</h2>
+                <p class="subtitulo">Ferramentas que utilizo para construir meus sistemas.</p>
+            </div>
 
             <div class="stack-grid">
                 <div class="stack-card">
-                    <h3>Backend</h3>
+                    <h3><i class="fa-solid fa-server"></i> Backend</h3>
                     <ul>
                         <li>Python (Flask)</li>
                         <li>APIs REST</li>
@@ -140,7 +150,15 @@
                     </ul>
                 </div>
                 <div class="stack-card">
-                    <h3>Frontend</h3>
+                    <h3><i class="fa-solid fa-database"></i> Banco de Dados</h3>
+                    <ul>
+                        <li>SQLite</li>
+                        <li>SQL</li>
+                        <li>Modelagem de Dados</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <h3><i class="fa-solid fa-code"></i> Frontend</h3>
                     <ul>
                         <li>HTML5 / CSS3</li>
                         <li>JavaScript (Básico)</li>
@@ -148,36 +166,31 @@
                     </ul>
                 </div>
                 <div class="stack-card">
-                    <h3>Banco de Dados</h3>
-                    <ul>
-                        <li>SQLite</li>
-                        <li>Modelagem de Dados</li>
-                        <li>SQL</li>
-                    </ul>
-                </div>
-                <div class="stack-card">
-                    <h3>DevOps & Ferramentas</h3>
+                    <h3><i class="fa-solid fa-toolbox"></i> Ferramentas</h3>
                     <ul>
                         <li>Git / GitHub</li>
                         <li>VS Code</li>
-                        <li>Deploy em Nuvem (estudando)</li>
+                        <li>Deploy em Nuvem</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJETOS EM DESTAQUE -->
-    <section id="projetos">
+    <!-- PROJETOS -->
+    <section id="projetos" class="fade-in">
         <div class="container">
-            <h2 class="titulo-secao">Projetos em Destaque</h2>
-            <p class="subtitulo">Soluções que desenvolvi aplicando boas práticas de engenharia de software.</p>
+            <div class="header-secao">
+                <h2 class="titulo-secao">Projetos em Destaque</h2>
+                <p class="subtitulo">Soluções que desenvolvi aplicando boas práticas.</p>
+            </div>
 
             <div class="projetos-grid">
-                <!-- Projeto 1 -->
                 <div class="projeto-card">
-                    <span class="projeto-tag">Destaque</span>
-                    <h3>TechOS ERP (SaaS)</h3>
+                    <div class="projeto-header">
+                        <h3>TechOS ERP (SaaS)</h3>
+                        <span class="projeto-tag">Destaque</span>
+                    </div>
                     <p>Sistema completo de gestão de Ordens de Serviço para assistências técnicas. Conta com autenticação multi-empresa, painel de administrador, geração de PDFs e automação de avisos via WhatsApp.</p>
                     <div class="projeto-techs">
                         <span>Python</span>
@@ -186,13 +199,14 @@
                         <span>Bcrypt</span>
                         <span>APIs REST</span>
                     </div>
-                    <a href="https://arthurvbelarmino-design.github.io/site-techos/" target="_blank" class="btn-projeto">Acessar o Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://arthurvbelarmino-design.github.io/site-techos/" target="_blank" class="btn-projeto">Ver Projeto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
-                <!-- Projeto 2 -->
                 <div class="projeto-card">
-                    <span class="projeto-tag">Institucional</span>
-                    <h3>Site da TechOS</h3>
+                    <div class="projeto-header">
+                        <h3>Site Institucional TechOS</h3>
+                        <span class="projeto-tag">Frontend</span>
+                    </div>
                     <p>Criação do site oficial da minha empresa de tecnologia. Projeto focado em UI/UX, performance, responsividade e conversão, com design moderno focado em vender soluções para comércios locais.</p>
                     <div class="projeto-techs">
                         <span>HTML5</span>
@@ -200,57 +214,49 @@
                         <span>JavaScript</span>
                         <span>UI/UX</span>
                     </div>
-                    <a href="https://arthurvbelarmino-design.github.io/site-techos/" target="_blank" class="btn-projeto">Ver Projeto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://arthurvbelarmino-design.github.io/site-techos/" target="_blank" class="btn-projeto">Ver Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIÊNCIA E FORMAÇÃO -->
-    <section id="experiencia" style="background: #0b1120;">
+    <!-- EXPERIÊNCIA -->
+    <section id="experiencia" class="fade-in">
         <div class="container">
-            <h2 class="titulo-secao">Experiência & Formação</h2>
-            <p class="subtitulo">Minha jornada profissional e acadêmica.</p>
+            <div class="header-secao">
+                <h2 class="titulo-secao">Jornada Profissional</h2>
+                <p class="subtitulo">Minha experiência e formação acadêmica.</p>
+            </div>
 
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>Fundador e Desenvolvedor Backend</h3>
+                    <h3>Fundador e Desenvolvedor</h3>
                     <h4>TechOS (Empresa Própria)</h4>
                     <span class="data">2026 - Atual</span>
-                    <ul>
-                        <li>Desenvolvimento de um sistema ERP (SaaS) para gestão de assistências técnicas.</li>
-                        <li>Criação do back-end em Python/Flask, banco de dados relacional e integração com API do WhatsApp.</li>
-                        <li>Desenvolvimento de sites institucionais responsivos e foco na experiência do usuário.</li>
-                    </ul>
+                    <p>Desenvolvimento de um sistema ERP (SaaS) para gestão de assistências técnicas, atuando no back-end em Python/Flask, banco de dados relacional e integração com API do WhatsApp.</p>
                 </div>
 
                 <div class="timeline-item">
                     <h3>Auxiliar Logístico</h3>
                     <h4>Mercado Livre · Cajamar - SP</h4>
                     <span class="data">2026 - Atual</span>
-                    <ul>
-                        <li>Atuação na operação logística com foco em análise de processos e utilização de sistemas internos.</li>
-                    </ul>
+                    <p>Atuação na operação logística com foco em análise de processos e utilização de sistemas internos.</p>
                 </div>
 
                 <div class="timeline-item">
                     <h3>Administrativo e Marketing (VIS)</h3>
                     <h4>Mercado Livre · Osasco - SP</h4>
                     <span class="data">2025 - 2026</span>
-                    <ul>
-                        <li>Organização de fluxos de informação e suporte à comunicação com parceiros e vendedores.</li>
-                    </ul>
+                    <p>Organização de fluxos de informação e suporte à comunicação com parceiros e vendedores.</p>
                 </div>
 
                 <div class="timeline-item">
                     <h3>Atendente e Operador de Caixa</h3>
                     <h4>Stromboli Assistência Técnica</h4>
                     <span class="data">2019 - 2025</span>
-                    <ul>
-                        <li>Atendimento direto ao cliente e gestão de caixa. Vivência que inspirou a criação de soluções tecnológicas para o setor.</li>
-                    </ul>
+                    <p>Atendimento direto ao cliente e gestão de caixa. Vivência que inspirou a criação de soluções tecnológicas para o setor.</p>
                 </div>
-
+                
                 <div class="timeline-item">
                     <h3>Bacharelado em Engenharia de Software</h3>
                     <h4>Universidade Cruzeiro do Sul</h4>
@@ -260,22 +266,38 @@
         </div>
     </section>
 
-    <!-- RODAPÉ / CONTATO -->
-    <footer>
+    <!-- RODAPÉ -->
+    <footer class="fade-in">
         <div class="container">
             <h2>Vamos conversar?</h2>
-            <p>Gosto de trocar ideias sobre back-end, startups e soluções para o varejo. Se quiser bater um papo, me chamar para uma oportunidade ou só falar de tecnologia, meu contato está aberto.</p>
+            <p>Estou sempre aberto a novos projetos, colaborações e oportunidades na área de tecnologia.</p>
             
             <div class="footer-links">
-                <a href="mailto:arthurvbelarmino@gmail.com"><i class="fa-solid fa-envelope"></i> E-mail</a>
-                <a href="https://wa.me/5511969531212" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                <a href="https://www.linkedin.com/in/arthur-belarmino-80a7163aa" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/arthurvbelarmino-design" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="mailto:arthurvbelarmino@gmail.com" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://wa.me/5511969531212" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/arthur-belarmino-80a7163aa" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/arthurvbelarmino-design" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
 
             <p class="copyright">&copy; 2026 Arthur Belarmino. Feito com dedicação.</p>
         </div>
     </footer>
+
+    <!-- SCRIPT DE ANIMAÇÃO -->
+    <script>
+        const elementos = document.querySelectorAll('.fade-in');
+        const observador = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visivel');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elementos.forEach(elemento => {
+            observador.observe(elemento);
+        });
+    </script>
 
 </body>
 </html>
