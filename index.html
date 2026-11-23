@@ -3,160 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arthur Belarmino | Desenvolvedor & Fundador TechOS</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Arthur Belarmino | Desenvolvedor Backend</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --texto: #e2e8f0;
+            --texto-mutado: #94a3b8;
+            --destaque: #3b82f6;
+            --destaque-hover: #60a5fa;
+            --borda: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--texto); line-height: 1.6; }
+        a { text-decoration: none; color: var(--destaque); transition: 0.3s; }
+        a:hover { color: var(--destaque-hover); }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        
+        /* HERO SECTION */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .hero h1 { font-size: 3.5em; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 10px; }
+        .hero h2 { font-size: 1.5em; color: var(--texto-mutado); font-weight: 400; margin-bottom: 30px; }
+        .hero p { max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1em; color: var(--texto-mutado); }
+        .btn { background: var(--destaque); color: #fff; padding: 12px 30px; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; }
+        .btn:hover { background: var(--destaque-hover); color: #fff; transform: translateY(-2px); }
+        .scroll-down { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 1.5em; color: var(--texto-mutado); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
+
+        /* SEÇÕES GERAIS */
+        section { padding: 80px 0; border-bottom: 1px solid var(--borda); }
+        .titulo-secao { font-size: 2em; font-weight: 800; margin-bottom: 10px; }
+        .subtitulo { color: var(--texto-mutado); margin-bottom: 40px; font-size: 1.1em; }
+
+        /* QUEM É O ARTHUR */
+        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .sobre-texto p { margin-bottom: 20px; font-size: 1.1em; color: var(--texto-mutado); }
+        .sobre-texto strong { color: var(--texto); }
+        .sobre-img img { width: 100%; border-radius: 20px; border: 2px solid var(--borda); }
+
+        /* STACK DE TECNOLOGIAS */
+        .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .stack-card { background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid var(--borda); }
+        .stack-card h3 { font-size: 1.2em; margin-bottom: 15px; color: var(--destaque); border-bottom: 1px solid var(--borda); padding-bottom: 10px; }
+        .stack-card ul { list-style: none; }
+        .stack-card li { margin-bottom: 8px; color: var(--texto-mutado); display: flex; align-items: center; gap: 10px; }
+        .stack-card li::before { content: "▹"; color: var(--destaque); font-weight: bold; }
+
+        /* PROJETOS */
+        .projetos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .projeto-card { background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--borda); transition: 0.3s; }
+        .projeto-card:hover { transform: translateY(-5px); border-color: var(--destaque); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .projeto-tag { font-size: 0.8em; font-weight: 700; color: var(--destaque); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .projeto-card h3 { font-size: 1.5em; margin-bottom: 15px; }
+        .projeto-card p { color: var(--texto-mutado); margin-bottom: 20px; font-size: 0.95em; }
+        .projeto-techs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .projeto-techs span { background: rgba(59, 130, 246, 0.1); color: var(--destaque); padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 600; }
+        .btn-projeto { font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9em; }
+
+        /* EXPERIÊNCIA E FORMAÇÃO */
+        .timeline { border-left: 2px solid var(--borda); padding-left: 30px; margin-top: 20px; }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+        .timeline-item::before { content: ''; position: absolute; left: -37px; top: 5px; width: 12px; height: 12px; background: var(--destaque); border-radius: 50%; border: 3px solid var(--bg); }
+        .timeline-item h3 { font-size: 1.3em; }
+        .timeline-item h4 { font-size: 1em; color: var(--texto-mutado); font-weight: 400; margin-bottom: 10px; }
+        .timeline-item .data { display: inline-block; background: var(--bg-card); padding: 4px 12px; border-radius: 20px; font-size: 0.8em; margin-bottom: 15px; border: 1px solid var(--borda); }
+        .timeline-item ul { list-style: none; color: var(--texto-mutado); }
+        .timeline-item ul li { margin-bottom: 8px; padding-left: 15px; position: relative; }
+        .timeline-item ul li::before { content: "•"; position: absolute; left: 0; color: var(--destaque); }
+
+        /* RODAPÉ / CONTATO */
+        footer { padding: 80px 0; text-align: center; }
+        footer h2 { font-size: 2.5em; font-weight: 800; margin-bottom: 20px; }
+        footer p { color: var(--texto-mutado); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+        .footer-links a { display: flex; align-items: center; gap: 8px; background: var(--bg-card); padding: 12px 24px; border-radius: 8px; border: 1px solid var(--borda); color: var(--texto); font-weight: 600; }
+        .footer-links a:hover { background: var(--destaque); border-color: var(--destaque); color: #fff; }
+        .copyright { font-size: 0.9em; color: var(--texto-mutado); border-top: 1px solid var(--borda); padding-top: 30px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .sobre-grid, .projetos-grid { grid-template-columns: 1fr; }
+            .sobre-img { display: none; } /* Esconde a foto no mobile para não empurrar o texto */
+        }
+    </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Arthur<span>.</span></a>
-            <nav>
-                <a href="#sobre">Sobre</a>
-                <a href="#projetos">Projetos</a>
-                <a href="#experiencia">Experiência</a>
-                <a href="#contato" class="btn-contato">Contato</a>
-            </nav>
-        </div>
-    </header>
-
     <!-- HERO SECTION -->
-    <section class="hero" id="inicio">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <span class="badge">Disponível para novos desafios</span>
-                <h1>Olá, eu sou o <br><span class="destaque">Arthur Belarmino.</span></h1>
-                <h2>Desenvolvedor Python & Fundador da TechOS.</h2>
-                <p>Estudante de Engenharia de Software, apaixonado por resolver problemas reais através da tecnologia. Da vivência no balcão de uma assistência técnica à criação de sistemas ERP completos na nuvem.</p>
-                <div class="hero-botoes">
-                    <a href="#projetos" class="btn-principal">Ver Projetos</a>
-                    <a href="https://wa.me/5511969531212" target="_blank" class="btn-secundario"><i class="fa-brands fa-whatsapp"></i> Fale Comigo</a>
+    <section class="hero">
+        <div class="container">
+            <h1>Arthur Belarmino</h1>
+            <h2>Desenvolvedor Backend & Fundador da TechOS</h2>
+            <p>Estudante de Engenharia de Software focado em criar soluções digitais que resolvem problemas reais. Da vivência no comércio local à construção de sistemas ERP na nuvem.</p>
+            <a href="#quem-sou" class="btn">Role para explorar <i class="fa-solid fa-arrow-down"></i></a>
+        </div>
+        <a href="#quem-sou" class="scroll-down"><i class="fa-solid fa-chevron-down"></i></a>
+    </section>
+
+    <!-- QUEM É O ARTHUR -->
+    <section id="quem-sou">
+        <div class="container">
+            <h2 class="titulo-secao">Quem é o Arthur</h2>
+            <p class="subtitulo">Minha história, minha visão de mundo e o que me move.</p>
+            
+            <div class="sobre-grid">
+                <div class="sobre-texto">
+                    <p>Minha relação com a tecnologia começou de forma inesperada: <strong>debaixo do balcão da assistência técnica do meu pai</strong>. Passei anos atendendo clientes e vendo a rotina de um pequeno comércio, o que me deu uma visão muito prática das dificuldades de quem empreende no Brasil.</p>
+                    <p>Foi ao perceber a dificuldade do meu pai em gerenciar tudo em papéis que decidi aprender a programar. Hoje, curso Engenharia de Software e transformei essa vontade em ação criando a <strong>TechOS</strong>, minha empresa focada em desenvolver sistemas e sites acessíveis para pequenos negócios.</p>
+                    <p>Atualmente, atuo na área de logística do Mercado Livre, onde lido com processos, resolução de problemas e análise de dados. Sou <strong>autodidata</strong>, proativo e acredito que a melhor tecnologia é aquela que resolve a vida real de alguém.</p>
+                </div>
+                <div class="sobre-img">
+                    <!-- Coloque a sua foto aqui -->
+                    <img src="perfil.jpg" alt="Arthur Belarmino">
                 </div>
             </div>
-                        <div class="hero-image">
-                <img src="perfil.jpg" alt="Arthur Belarmino" style="width: 100%; max-width: 350px; border-radius: 50%; border: 4px solid var(--cor-destaque); display: block; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        </div>
+    </section>
+
+    <!-- STACK DE TECNOLOGIAS -->
+    <section id="stack" style="background: #0b1120;">
+        <div class="container">
+            <h2 class="titulo-secao">Stack de Tecnologias</h2>
+            <p class="subtitulo">Ferramentas e linguagens que utilizo para construir meus sistemas.</p>
+
+            <div class="stack-grid">
+                <div class="stack-card">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Python (Flask)</li>
+                        <li>APIs REST</li>
+                        <li>Integração de Sistemas</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML5 / CSS3</li>
+                        <li>JavaScript (Básico)</li>
+                        <li>Design Responsivo</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <h3>Banco de Dados</h3>
+                    <ul>
+                        <li>SQLite</li>
+                        <li>Modelagem de Dados</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <h3>DevOps & Ferramentas</h3>
+                    <ul>
+                        <li>Git / GitHub</li>
+                        <li>VS Code</li>
+                        <li>Deploy em Nuvem (estudando)</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SOBRE MIM -->
-    <section class="sobre" id="sobre">
+    <!-- PROJETOS EM DESTAQUE -->
+    <section id="projetos">
         <div class="container">
-            <h2 class="titulo-secao">Sobre Mim</h2>
-            <div class="sobre-content">
-                <p>Minha relação com a tecnologia começou debaixo do balcão. Passei anos ajudando no dia a dia da assistência técnica do meu pai, atendendo clientes e vendo de perto a rotina de um pequeno comércio. Foi ali, vendo a dificuldade dele em gerenciar tudo no papel, que a ficha caiu: eu queria usar a programação para facilitar a vida de quem empreende.</p>
-                <p>Hoje, curso Engenharia de Software e estou colocando essa ideia em prática. Criei a <strong>TechOS</strong>, minha empresa de tecnologia, e desenvolvi o meu primeiro grande projeto: um sistema completo de Ordens de Serviço que já está ajudando o negócio da minha família a se modernizar.</p>
-                <p>Atualmente, trabalho na área de logística do Mercado Livre em Cajamar, onde lido com análise de códigos e processos. Sou movido por desafios, acredito que a tecnologia só faz sentido se resolver problemas reais e estou sempre em busca de aprender algo novo.</p>
-            </div>
-        </div>
-    </section>
+            <h2 class="titulo-secao">Projetos em Destaque</h2>
+            <p class="subtitulo">Soluções que desenvolvi aplicando boas práticas de engenharia de software.</p>
 
-    <!-- PROJETOS -->
-    <section class="projetos" id="projetos">
-        <div class="container">
-            <h2 class="titulo-secao">Meus Projetos</h2>
-            <div class="grid-projetos">
-                
+            <div class="projetos-grid">
                 <!-- Projeto 1 -->
-                <div class="card-projeto">
-                    <div class="projeto-header">
-                        <i class="fa-solid fa-laptop-code icone-projeto"></i>
-                        <span class="tag-tech">Python / Flask / SQLite</span>
+                <div class="projeto-card">
+                    <span class="projeto-tag">Destaque</span>
+                    <h3>TechOS ERP (SaaS)</h3>
+                    <p>Sistema completo de gestão de Ordens de Serviço para assistências técnicas. Conta com autenticação multi-empresa, painel de administrador, geração de PDFs e automação de avisos via WhatsApp.</p>
+                    <div class="projeto-techs">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>SQLite</span>
+                        <span>Bcrypt</span>
+                        <span>APIs REST</span>
                     </div>
-                    <h3>TechOS Assistência</h3>
-                    <p>Sistema ERP completo para assistências técnicas. Conta com gestão de clientes, geração de Ordens de Serviço, controle financeiro, termos de garantia e envio automático de mensagens para o WhatsApp do cliente.</p>
-                    <a href="https://arthurbelarmino-design.github.io/site-techos/" target="_blank" class="link-projeto">Acessar o Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://arthurvbelarmino-design.github.io/site-techos/" target="_blank" class="btn-projeto">Acessar o Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
                 <!-- Projeto 2 -->
-                <div class="card-projeto">
-                    <div class="projeto-header">
-                        <i class="fa-solid fa-globe icone-projeto"></i>
-                        <span class="tag-tech">HTML / CSS / JS</span>
+                <div class="projeto-card">
+                    <span class="projeto-tag">Institucional</span>
+                    <h3>Site da TechOS</h3>
+                    <p>Criação do site oficial da minha empresa de tecnologia. Projeto focado em UI/UX, performance, responsividade e conversão, com design moderno focado em vender soluções para comércios locais.</p>
+                    <div class="projeto-techs">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>UI/UX</span>
                     </div>
-                    <h3>Site Institucional TechOS</h3>
-                    <p>Site de apresentação da minha empresa de software. Desenvolvido do zero com foco em UI/UX, design responsivo, animações em JavaScript e otimização para conversão de clientes.</p>
-                    <a href="https://arthurbelarmino-design.github.io/site-techos/" target="_blank" class="link-projeto">Ver Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://arthurvbelarmino-design.github.io/site-techos/" target="_blank" class="btn-projeto">Ver Projeto <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- EXPERIÊNCIA & HABILIDADES -->
-    <section class="experiencia" id="experiencia">
-        <div class="container split-exp">
-            <!-- Coluna 1: Experiência -->
-            <div class="col-exp">
-                <h2 class="titulo-secao">Experiência</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>Fundador e Desenvolvedor</h4>
-                        <span class="empresa">TechOS | 2026 - Atual</span>
-                        <p>Desenvolvimento de sistemas de gestão (SaaS) e sites personalizados para pequenos comércios. Foco em resolver as dores reais do varejo local.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Auxiliar Logístico</h4>
-                        <span class="empresa">Mercado Livre (Cajamar) | 2026 - Atual</span>
-                        <p>Atuação na operação logística com foco em análise de processos e suporte tecnológico à operação.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Administrativo e Marketing</h4>
-                        <span class="empresa">Mercado Livre (Osasco) | 2025</span>
-                        <p>Atuação na área administrativa e de marketing VIS (Vendedores e Inovação Social), com foco em organização e comunicação.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Atendente e Operador de Caixa</h4>
-                        <span class="empresa">Stromboli Assistência Técnica | 01/2019 - 08/2025</span>
-                        <p>Atendimento ao cliente, controle de caixa e suporte administrativo. Vivência prática que inspirou a criação de soluções tecnológicas para o setor.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- EXPERIÊNCIA E FORMAÇÃO -->
+    <section id="experiencia" style="background: #0b1120;">
+        <div class="container">
+            <h2 class="titulo-secao">Experiência & Formação</h2>
+            <p class="subtitulo">Minha jornada profissional e acadêmica.</p>
 
-            <!-- Coluna 2: Habilidades -->
-            <div class="col-hab">
-                <h2 class="titulo-secao">Habilidades Técnicas</h2>
-                <div class="tech-grid">
-                    <div class="tech-item"><i class="fa-brands fa-python"></i> Python</div>
-                    <div class="tech-item"><i class="fa-solid fa-pepper-hot"></i> Flask</div>
-                    <div class="tech-item"><i class="fa-brands fa-html5"></i> HTML5</div>
-                    <div class="tech-item"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
-                    <div class="tech-item"><i class="fa-brands fa-js"></i> JavaScript</div>
-                    <div class="tech-item"><i class="fa-solid fa-database"></i> SQLite</div>
-                    <div class="tech-item"><i class="fa-solid fa-code"></i> APIs REST</div>
-                    <div class="tech-item"><i class="fa-brands fa-git-alt"></i> Git / GitHub</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Fundador e Desenvolvedor Backend</h3>
+                    <h4>TechOS (Empresa Própria)</h4>
+                    <span class="data">2026 - Atual</span>
+                    <ul>
+                        <li>Desenvolvimento de um sistema ERP (SaaS) para gestão de assistências técnicas.</li>
+                        <li>Criação do back-end em Python/Flask, banco de dados relacional e integração com API do WhatsApp.</li>
+                        <li>Desenvolvimento de sites institucionais responsivos e foco na experiência do usuário.</li>
+                    </ul>
                 </div>
 
-                <h2 class="titulo-secao" style="margin-top: 40px;">Soft Skills</h2>
-                <ul class="lista-soft">
-                    <li><i class="fa-solid fa-check"></i> Boa comunicação e empatia no atendimento</li>
-                    <li><i class="fa-solid fa-check"></i> Trabalho em equipe e liderança</li>
-                    <li><i class="fa-solid fa-check"></i> Proatividade e resiliência</li>
-                    <li><i class="fa-solid fa-check"></i> Facilidade em aprender novas tecnologias</li>
-                </ul>
+                <div class="timeline-item">
+                    <h3>Auxiliar Logístico</h3>
+                    <h4>Mercado Livre · Cajamar - SP</h4>
+                    <span class="data">2026 - Atual</span>
+                    <ul>
+                        <li>Atuação na operação logística com foco em análise de processos e utilização de sistemas internos.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Administrativo e Marketing (VIS)</h3>
+                    <h4>Mercado Livre · Osasco - SP</h4>
+                    <span class="data">2025 - 2026</span>
+                    <ul>
+                        <li>Organização de fluxos de informação e suporte à comunicação com parceiros e vendedores.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Atendente e Operador de Caixa</h3>
+                    <h4>Stromboli Assistência Técnica</h4>
+                    <span class="data">2019 - 2025</span>
+                    <ul>
+                        <li>Atendimento direto ao cliente e gestão de caixa. Vivência que inspirou a criação de soluções tecnológicas para o setor.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Bacharelado em Engenharia de Software</h3>
+                    <h4>Universidade Cruzeiro do Sul</h4>
+                    <span class="data">Cursando (2026 - 2029)</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- RODAPÉ / CONTATO -->
-    <footer id="contato">
-        <div class="container footer-content">
-            <h2>Vamos construir algo juntos?</h2>
-            <p>Estou sempre aberto a novos projetos, oportunidades e desafios na área de tecnologia.</p>
+    <footer>
+        <div class="container">
+            <h2>Vamos conversar?</h2>
+            <p>Gosto de trocar ideias sobre back-end, startups e soluções para o varejo. Se quiser bater um papo, me chamar para uma oportunidade ou só falar de tecnologia, meu contato está aberto.</p>
             
             <div class="footer-links">
-                <a href="mailto:arthurvbelarmino@gmail.com"><i class="fa-solid fa-envelope"></i> arthurvbelarmino@gmail.com</a>
-                <a href="https://wa.me/5511969531212" target="_blank"><i class="fa-brands fa-whatsapp"></i> (11) 96953-1212</a>
-                <a href="https://github.com/arthurbelarmino-design" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="mailto:arthurvbelarmino@gmail.com"><i class="fa-solid fa-envelope"></i> E-mail</a>
+                <a href="https://wa.me/5511969531212" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://www.linkedin.com/in/arthur-belarmino-80a7163aa" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/arthurvbelarmino-design" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
-            
-            <p class="copyright">&copy; 2026 Arthur Belarmino. Desenvolvido com dedicação.</p>
+
+            <p class="copyright">&copy; 2026 Arthur Belarmino. Feito com dedicação.</p>
         </div>
     </footer>
 
 </body>
-
 </html>
